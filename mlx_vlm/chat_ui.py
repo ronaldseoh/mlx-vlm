@@ -23,7 +23,7 @@ def parse_arguments():
 
 args = parse_arguments()
 config = load_config(args.model)
-model, processor = load(args.model, {"trust_remote_code": True})
+model, processor = load(args.model, trust_remote_code=True)
 image_processor = load_image_processor(args.model)
 
 
