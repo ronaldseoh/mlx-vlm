@@ -60,12 +60,12 @@ def chat(message, history, temperature, max_tokens):
             raise gr.Error("Please upload an image. Text only chat is not supported.")
     else:
         messages = message["text"]
-
-    files = message["files"][-1]["path"]
+    
+    files = message["files"]
 
     response = ""
     for chunk in stream_generate(
-        model, processor, file, prompt, image_processor, max_tokens, temp=temperature
+        model, processor, prompt, files, max_tokens=max_tokens, temp=temperature
     ):
         response += chunk
         yield response
